@@ -1,0 +1,4 @@
+SELECT Name, Title
+FROM Instructor, Course
+WHERE Instructor.[Instructor ID] = Course.[Instructor ID]
+ORDER BY Name ASC;

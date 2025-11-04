@@ -1,0 +1,10 @@
+#Child party planner
+
+Child_Buffet = 2
+
+cake = str(input(Do you want cake?))
+                 if cake.lower = yes
+                 cake_price = 2
+                    if cake.lower = no
+                    cake_price = 0
+

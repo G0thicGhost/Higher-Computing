@@ -1,0 +1,26 @@
+input(str("Water_Cost"))
+input(str("Flavouring_Cost"))
+input(str("Labour_Cost"))
+
+Manufactoring_Cost = Water_Cost + Flavouring_Cost + Labour_Cost
+Profit = Selling_Price - Manufactoring_Cost
+
+print(Profit)
+
+
+
+REPEAT 6 TIMES
+move(n)
+rotate(60)
+END REPEAT
+
+If numTwo < numOne:
+   int(input("please input a number larger than numOne"))
+
+Total_score = 2
+user_answer = str(input("input answer:"))
+If user_answer = "A"
+   Total_score = Total_score + 1
+
+If no_bags < 2 or no_bags > 6
+   display error-page
