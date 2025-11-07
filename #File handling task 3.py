@@ -3,7 +3,7 @@
 items = []
 names = []
 marks = []
-with open("1101. File Handling/1101 Task 3/pupils.txt") as readfile:
+with open("Pupils.txt") as readfile:
     line = readfile.readline().rstrip('\n')
     while line:
         items = line.split(",")
