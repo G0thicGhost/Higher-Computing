@@ -3,7 +3,7 @@
 #-------------Main Program-----------------
 #open file
 import time
-with open("1101 Task 1-SampleFile.txt") as readfile:
+with open("SDD/File Handling/1101 Task 1-SampleFile.txt") as readfile:
     #filecontents = readfile.read()
     nextLine = readfile.readline()
     while nextLine != "":

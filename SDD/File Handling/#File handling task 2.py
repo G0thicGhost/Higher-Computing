@@ -3,7 +3,7 @@
 #-------------Main Program-----------------
 import time
 #open file
-with open("newfile.txt","w") as writefile:
+with open("SDD/File Handling/newfile.txt","w") as writefile:
     writefile.write("Emilia, Red, May")
     time.sleep(1)
 
