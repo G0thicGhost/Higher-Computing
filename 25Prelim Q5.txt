@@ -1,0 +1,6 @@
+SET NoComplete to 0
+loop is length of Name
+	IF current item in DataCollectionStatus is Complete AND DataAnalysis is Complete
+		THEN
+			NoComplete = NoComplete + 1
+END IF
