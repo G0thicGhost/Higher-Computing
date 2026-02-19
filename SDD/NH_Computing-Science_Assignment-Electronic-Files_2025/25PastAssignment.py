@@ -1,0 +1,76 @@
+
+from dataclasses import dataclass
+@dataclass
+class Order():
+    orderNum : str = ""
+    date : str = ""
+    email : str = ""
+    option : str = ""
+    cost : float = 0.0
+    rating : int = 0
+
+orders = [Order() for index in range(505)]
+#subroutines
+def ReadFromFileIntoArrayOfRecords():
+    with open("orders.txt") as readfile:
+        
+    return orders
+
+def  FindPositionOfCustomer(orders):
+    #2.1 Set position to -1
+    position = -1
+    #2.2 Set index to 0
+    index = 0
+    #2.3 Ask user to enter month to search for
+    month = input("Enter month to search for")
+    #2.4 While position is -1 and index is less than the length of the array
+    while position == -1 and index < len(orders):
+        monthIndex = orders[index].date[3:6]
+        #2.5 If current month is equal to searched month and current rating is 5 then
+        if (monthIndex == month) and (orders[index].rating == 5):
+            #2.6 Set position to index
+            position = index
+        #2.7 End if
+        #2.8 Add 1 to index
+        index = index + 1
+    #2.9 End while
+
+    #2.10 Return position
+    return position
+
+def WriteDetailsOfWinningCustomer(orders, position):
+    #3.1 Open new file ‘winningCustomer.txt’
+    with open("winningCustomer.txt", "w") as writefile:
+        # 3.2 If position is 0 or above then
+        if position >= 0:
+            # 3.3 Write winning order number, email and cost to ‘winningCustomer.txt’
+            writefile.write(orders)
+        # 3.4 Else
+        else:
+            # 3.5 Write ‘No winner’ to ‘winningCustomer.txt’
+            writefile.write("No Winner.")
+    # 3.6 End if
+    # 3.7 Close ‘winningCustomer.txt’
+    pass
+
+def DisplayOrders(orders):
+    #4.1 Call countOption function to return the number of orders delivered
+    countDelivered = 0
+    for x in range(len(orders)):
+        if orders[x].option == "Delivery":
+            countDelivered = countDelivered + 1
+    # 4.2 Call countOption function to return the number of orders collected
+    countCollected = 0
+    for x in range(len(orders)):
+        if orders[x].option == "Collection":
+            countCollected = countCollected + 1
+    # 4.3 Output the total number of orders delivered
+    print("Orders Delivered:", countDelivered)
+    # 4.4 Output the total number of orders collect
+    print("Orders Collected:", countCollected)
+
+#main program
+orders = ReadFromFileIntoArrayOfRecords()
+position = FindPositionOfCustomer(orders)
+WriteDetailsOfWinningCustomer(orders, position)
+DisplayOrders(orders)
