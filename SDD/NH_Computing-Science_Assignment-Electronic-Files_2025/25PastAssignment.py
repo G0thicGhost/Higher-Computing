@@ -9,11 +9,24 @@ class Order():
     cost : float = 0.0
     rating : int = 0
 
+items = []
+fileName = "SDD/NH_Computing-Science_Assignment-Electronic-Files_2025/orders.txt"
 orders = [Order() for index in range(505)]
 #subroutines
-def ReadFromFileIntoArrayOfRecords():
-    with open("orders.txt") as readfile:
-        
+def ReadFromFileIntoArrayOfRecords(orders, fileName, items):
+    with open(fileName, "r") as readfile:
+        aaaa = 0
+        line = readfile.readline().rstrip('\n')
+        while line != "":
+            items = line.split(",")
+            orders[aaaa].orderNum = items[0]
+            orders[aaaa].date = items[1]
+            orders[aaaa].email = items[2]
+            orders[aaaa].option = items[3]
+            orders[aaaa].cost = items[4]
+            orders[aaaa].rating = items[5]
+            orders = readfile.readline().rstrip('\n')
+            aaaa = aaaa + 1
     return orders
 
 def  FindPositionOfCustomer(orders):
@@ -70,7 +83,7 @@ def DisplayOrders(orders):
     print("Orders Collected:", countCollected)
 
 #main program
-orders = ReadFromFileIntoArrayOfRecords()
+orders = ReadFromFileIntoArrayOfRecords(orders, fileName, items)
 position = FindPositionOfCustomer(orders)
 WriteDetailsOfWinningCustomer(orders, position)
 DisplayOrders(orders)
