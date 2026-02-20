@@ -1,4 +1,5 @@
 
+# Establishing stuffs --------------------------------------------
 from dataclasses import dataclass
 @dataclass
 class Order():
@@ -9,24 +10,24 @@ class Order():
     cost : float = 0.0
     rating : int = 0
 
-items = []
-fileName = "SDD/NH_Computing-Science_Assignment-Electronic-Files_2025/orders.txt"
-orders = [Order() for index in range(505)]
-#subroutines
-def ReadFromFileIntoArrayOfRecords(orders, fileName, items):
+# Subroutines------------------------------------------------------
+def ReadFromFileIntoArrayOfRecords():
+    items = []
+    index = 0
+    fileName = "SDD/NH_Computing-Science_Assignment-Electronic-Files_2025/orders.txt"
+    orders = [Order() for index in range(505)]
     with open(fileName, "r") as readfile:
-        aaaa = 0
         line = readfile.readline().rstrip('\n')
         while line != "":
             items = line.split(",")
-            orders[aaaa].orderNum = items[0]
-            orders[aaaa].date = items[1]
-            orders[aaaa].email = items[2]
-            orders[aaaa].option = items[3]
-            orders[aaaa].cost = items[4]
-            orders[aaaa].rating = items[5]
-            orders = readfile.readline().rstrip('\n')
-            aaaa = aaaa + 1
+            orders[index].orderNum = items[0]
+            orders[index].date = items[1]
+            orders[index].email = items[2]
+            orders[index].option = items[3]
+            orders[index].cost = items[4]
+            orders[index].rating = items[5]
+            index = index + 1
+            line = readfile.readline().rstrip('\n')
     return orders
 
 def  FindPositionOfCustomer(orders):
@@ -35,7 +36,8 @@ def  FindPositionOfCustomer(orders):
     #2.2 Set index to 0
     index = 0
     #2.3 Ask user to enter month to search for
-    month = input("Enter month to search for")
+    month = input("Enter month to search for")[0:3]
+    print(month)
     #2.4 While position is -1 and index is less than the length of the array
     while position == -1 and index < len(orders):
         monthIndex = orders[index].date[3:6]
@@ -52,12 +54,13 @@ def  FindPositionOfCustomer(orders):
     return position
 
 def WriteDetailsOfWinningCustomer(orders, position):
+    writefileName = "SDD/NH_Computing-Science_Assignment-Electronic-Files_2025/winningCustomer.txt"
     #3.1 Open new file ‘winningCustomer.txt’
-    with open("winningCustomer.txt", "w") as writefile:
+    with open(writefileName, "w") as writefile:
         # 3.2 If position is 0 or above then
         if position >= 0:
             # 3.3 Write winning order number, email and cost to ‘winningCustomer.txt’
-            writefile.write(orders)
+            writefile.write(orders[position].orderNum+", "+orders[position].email+", "+str(orders[position].cost))
         # 3.4 Else
         else:
             # 3.5 Write ‘No winner’ to ‘winningCustomer.txt’
@@ -82,8 +85,8 @@ def DisplayOrders(orders):
     # 4.4 Output the total number of orders collect
     print("Orders Collected:", countCollected)
 
-#main program
-orders = ReadFromFileIntoArrayOfRecords(orders, fileName, items)
+#Main program -------------------------------------------------------------------
+orders = ReadFromFileIntoArrayOfRecords()
 position = FindPositionOfCustomer(orders)
 WriteDetailsOfWinningCustomer(orders, position)
 DisplayOrders(orders)
