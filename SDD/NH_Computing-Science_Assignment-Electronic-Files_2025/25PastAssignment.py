@@ -25,7 +25,7 @@ def ReadFromFileIntoArrayOfRecords():
             orders[index].email = items[2]
             orders[index].option = items[3]
             orders[index].cost = items[4]
-            orders[index].rating = items[5]
+            orders[index].rating = int(items[5])
             index = index + 1
             line = readfile.readline().rstrip('\n')
     return orders
@@ -37,7 +37,6 @@ def  FindPositionOfCustomer(orders):
     index = 0
     #2.3 Ask user to enter month to search for
     month = input("Enter month to search for")[0:3]
-    print(month)
     #2.4 While position is -1 and index is less than the length of the array
     while position == -1 and index < len(orders):
         monthIndex = orders[index].date[3:6]
@@ -67,23 +66,31 @@ def WriteDetailsOfWinningCustomer(orders, position):
             writefile.write("No Winner.")
     # 3.6 End if
     # 3.7 Close ‘winningCustomer.txt’
-    pass
+
+def countOption(orders, thisOption):
+    #counting occurences
+    #set counter to 0
+    counter = 0
+    #loop for all items in list
+    for index in range(len(orders)):
+        # if item value meets condition then
+        if orders[index].option == thisOption:
+            #add 1 to counter
+            counter += 1
+    return counter
+
+
 
 def DisplayOrders(orders):
     #4.1 Call countOption function to return the number of orders delivered
-    countDelivered = 0
-    for x in range(len(orders)):
-        if orders[x].option == "Delivery":
-            countDelivered = countDelivered + 1
+    noDelivered = countOption(orders,"Delivery")
     # 4.2 Call countOption function to return the number of orders collected
-    countCollected = 0
-    for x in range(len(orders)):
-        if orders[x].option == "Collection":
-            countCollected = countCollected + 1
+    noCollection = countOption(orders,"Collection")
     # 4.3 Output the total number of orders delivered
-    print("Orders Delivered:", countDelivered)
+    print("Orders Delivered:", noDelivered)
     # 4.4 Output the total number of orders collect
-    print("Orders Collected:", countCollected)
+    print("Orders Collected:", noCollection)
+pass
 
 #Main program -------------------------------------------------------------------
 orders = ReadFromFileIntoArrayOfRecords()
