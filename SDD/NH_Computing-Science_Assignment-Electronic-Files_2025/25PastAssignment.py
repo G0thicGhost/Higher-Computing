@@ -1,5 +1,5 @@
 
-# Establishing stuffs --------------------------------------------
+# Establishing record --------------------------------------------
 from dataclasses import dataclass
 @dataclass
 class Order():
