@@ -1,0 +1,58 @@
+from dataclasses import dataclass
+@dataclass
+class square():
+    position : int = 0
+    player : str = ''
+    pointer : int = 0
+
+def displayBoard(gameboard):
+    for row in range(len(gameboard)):
+        print(str(gameboard[row].position) + ', ', end="")
+    print()
+
+def initPosition(gameboard):
+    index = 0
+    # task 2
+    # write code to set position of each square here
+    for index in range(len(gameboard)):
+       gameboard[index].position = index + 1 
+    
+    #and so begins the horrid elif wall
+
+    if gameboard[index].position == 4:
+        gameboard[index].position = 7
+
+    elif gameboard[index].position == 11:
+        gameboard[index].position = 9
+
+    elif gameboard[index].position == 15:
+        gameboard[index].position = 19
+
+    elif gameboard[index].position == 22:
+        gameboard[index].position = 19
+
+    elif gameboard[index].position == 26:
+        gameboard[index].position = 28
+
+    elif gameboard[index].position == 31:
+        gameboard[index].position = 36
+
+    elif gameboard[index].position == 35:
+        gameboard[index].position = 31
+
+    elif gameboard[index].position == 44:
+        gameboard[index].position = 47
+
+    elif gameboard[index].position == 47:
+        gameboard[index].position = 45
+
+    return gameboard
+
+
+# initialisation
+
+# setup 1-D array of records (gameboard) here - task 1
+gameboard = [square() for index in range(50)]
+displayBoard(gameboard)
+gameboard = initPosition(gameboard) # task 2
+displayBoard(gameboard)
